@@ -30,5 +30,13 @@ int main(){
         cout<<"Couldn't set comm state!\n";
     }
 
-    
+    COMMTIMEOUTS timeout={0};
+    timeout.ReadIntervalTimeout=60;
+    timeout.ReadTotalTimeoutConstant=60;
+    timeout.ReadTotalTimeoutMultiplier=15;
+    timeout.WriteTotalTimeoutConstant=60;
+    timeout.WriteTotalTimeoutMultiplier=8;
+    if(!SetCommTimeouts(serialHandle, &timeout)){
+        cout<<"Couldn't set comm timeouts!\n";
+    }
 }
